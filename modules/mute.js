@@ -21,6 +21,25 @@ muteUser = (msg, user) => {
         return msg.reply("Provide a reason to mute.")
     }
 
+    if(!muterole) {
+        try {
+            muterole = await message.guild.createRole({
+                name: "muted",
+                color: "#000000",
+                permissions:[]
+            })
+
+            message.guild.channels.forEach(async (channel, id) => {
+                await channel.overwritePermissions(muterole, {
+                SEND_MESSAGES: false,
+                ADD_REACTIONS: false,
+                });
+            });
+        }catch(e){
+            console.log(e.stack);
+        }
+    }
+
     await(mutedUser.addRole(muteRole.id));
     message.reply(`${mutedUser} has been muted for ${ms(ms(muteTime))}`);
   
@@ -33,22 +52,3 @@ muteUser = (msg, user) => {
 module.exports = {
     muteUser
 }
-
-// if(!muterole) {
-//     try {
-//       muterole = await message.guild.createRole({
-//         name: "muted",
-//         color: "#000000",
-//         permissions:[]
-//       })
-
-//       message.guild.channels.forEach(async (channel, id) => {
-//         await channel.overwritePermissions(muterole, {
-//           SEND_MESSAGES: false,
-//           ADD_REACTIONS: false,
-//         });
-//       });
-//     }catch(e){
-//       console.log(e.stack);
-//     }
-// }
