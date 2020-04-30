@@ -7,7 +7,7 @@ unbanUser = (msg) => {
 
     let bannedUser = args[0]
     if (bannedUser === '') {
-        return msg.channel.send("Provide a user to unban")
+        return msg.reply("Provide a user to unban")
     }
     try {
         msg.guild.unban(bannedUser)
