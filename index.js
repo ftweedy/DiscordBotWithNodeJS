@@ -5,7 +5,7 @@ const client = new Discord.Client()
 const kick = require('./modules/kick.js')
 const ban = require('./modules/ban.js')
 const unban = require('./modules/unban.js')
-const mute = requrie('./modules/mute.js')
+const timedMute = require('./modules/timedMute.js')
 
 client.on('ready', () => {
     var test = client.channels.cache.get("685609545548169278")
@@ -43,7 +43,7 @@ client.on('message', async msg => {
             }
 
             if (msg.content.startsWith('!tempmute')){
-                mute.muteUser(msg, user)
+                timedMute.muteUser(msg, user)
             }
         }
     }

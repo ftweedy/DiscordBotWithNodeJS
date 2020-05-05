@@ -1,7 +1,7 @@
 unbanUser = (msg) => {
     // let invite = msg.channel.createInvite({ maxUses: 1 })
     let args = msg.content.slice(6).split(' ')
-    if (args != ''){
+    if (args != ''){ //if (args)
         emptyElement = args.shift()
     }
 
